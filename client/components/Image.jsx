@@ -15,12 +15,14 @@ function Image({ line }) {
   }, [])
 
   return (
-    <>
-      <div className="img-div">
-        <img src={image} alt={line} className="img" />
-        <p className="pink-text">{line}</p>
-      </div>
-    </>
+    image && (
+      <>
+        <div className="img-div">
+          <img src={image} alt={line} className="img" />
+          <p className="pink-text">{line}</p>
+        </div>
+      </>
+    )
   )
 }
 

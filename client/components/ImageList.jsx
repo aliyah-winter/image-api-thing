@@ -4,10 +4,9 @@ import Image from './Image'
 function ImageList({ poem }) {
   const msg = new SpeechSynthesisUtterance()
   msg.text = poem.lines.join(' ')
-
   useEffect(() => {
     window.speechSynthesis.speak(msg)
-  }, [])
+  })
 
   return (
     <div className="img-grid">

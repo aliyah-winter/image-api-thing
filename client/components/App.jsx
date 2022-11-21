@@ -5,18 +5,15 @@ import ImageList from './ImageList'
 function App() {
   const [poem, setPoem] = useState({})
   const [loading, setLoading] = useState(true)
-  const msg = new SpeechSynthesisUtterance()
 
   useEffect(() => {
-    setLoading(() => true)
+    setLoading(true)
     getRandomBlake()
       .then((res) => {
         setPoem(() => res.body[51])
-        msg.text = poem.lines.join(' ')
-        window.speechSynthesis.speak(msg)
       })
       .finally(() => {
-        setLoading(() => false)
+        setLoading(false)
       })
       .catch((err) => {
         console.error(err.message)

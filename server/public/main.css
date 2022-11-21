@@ -9,7 +9,7 @@ body {
   margin: 1em;
 }
 .img {
-  width: 80%;
+  width: 60%;
   height:auto;
 }
 
@@ -28,6 +28,6 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   color: rgba(255, 0, 255, 0.9);
-  font-size: 8em;
-  font-weight: bold;
+  font-size: 6em;
+  text-shadow: 0px 0px 11px rgba(0, 0, 0, 1);
 }
