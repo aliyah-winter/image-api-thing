@@ -4,12 +4,12 @@ import Image from './Image'
 import { getRandomBlake } from '../apiClient'
 
 function App() {
-  const [poem, setPoem] = useState(null)
+  const [poem, setPoem] = useState([])
 
   useEffect(() => {
     getRandomBlake()
       .then((res) => {
-        setPoem(() => res.body[34].lines)
+        setPoem(() => res.body[51].lines)
       })
       .catch((err) => {
         console.error(err.message)

@@ -6,7 +6,6 @@ function Image({ line }) {
   const [image, setImage] = useState({})
   const msg = new SpeechSynthesisUtterance()
   msg.text = line
-  window.speechSynthesis.speak(msg)
 
   useEffect(() => {
     setLoading(() => true)
@@ -21,7 +20,7 @@ function Image({ line }) {
         console.error(err.message)
       })
   }, [])
-
+  window.speechSynthesis.speak(msg)
   return (
     <>
       {loading ? (
