@@ -4,23 +4,24 @@ import Image from './Image'
 import { getRandomBlake } from '../apiClient'
 
 function App() {
-  const [poem, setPoem] = useState([])
+  const [poem, setPoem] = useState(null)
 
   useEffect(() => {
-    ;(async () => {
-      const poem = await getRandomBlake()
-      setPoem(poem.body[3].lines)
-    })()
-
-    return () => {}
+    getRandomBlake()
+      .then((res) => {
+        setPoem(() => res.body[34].lines)
+      })
+      .catch((err) => {
+        console.error(err.message)
+      })
   }, [])
 
   return (
-    <div className="img-div">
-      {poem.map((line) => (
-        <Image key={line} line={line} />
-      ))}
-    </div>
+    <>
+      <div className="img-grid">
+        {poem && poem.map((line) => <Image key={line} line={line} />)}
+      </div>
+    </>
   )
 }
 
