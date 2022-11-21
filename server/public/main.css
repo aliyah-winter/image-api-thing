@@ -1,5 +1,12 @@
 body {
   background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(255,0,255,0.5172443977591037) 100%);
+  font-family: 'MedievalSharp', cursive;
+}
+
+.title {
+  text-align: center;
+  font-size: 5em;
+  margin: 1em;
 }
 .img {
   width: 80%;
@@ -20,7 +27,6 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'MedievalSharp', cursive;
   color: rgba(255, 0, 255, 0.9);
   font-size: 8em;
   font-weight: bold;
