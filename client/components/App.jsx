@@ -1,21 +1,27 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import Image from './Image'
 
-import { getWelcome } from '../apiClient'
+import { getRandomBlake } from '../apiClient'
 
 function App() {
-  const [welcomeStatement, setWelcomeStatement] = useState('')
+  const [poem, setPoem] = useState([])
 
   useEffect(() => {
-    getWelcome()
-      .then((res) => {
-        setWelcomeStatement(res.statement)
-      })
-      .catch((err) => {
-        console.error(err.message)
-      })
-  })
+    ;(async () => {
+      const poem = await getRandomBlake()
+      setPoem(poem.body[3].lines)
+    })()
 
-  return <h1>{welcomeStatement}</h1>
+    return () => {}
+  }, [])
+
+  return (
+    <div className="img-div">
+      {poem.map((line) => (
+        <Image key={line} line={line} />
+      ))}
+    </div>
+  )
 }
 
 export default App

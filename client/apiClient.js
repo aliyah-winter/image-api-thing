@@ -1,9 +1,15 @@
-import request from 'superagent'
+const deepai = require('deepai')
+const request = require('superagent')
 
-const serverURL = 'http://localhost:3000/api/v1'
+deepai.setApiKey('3973aaa4-a9de-4a87-bb2a-a169e0922cf0')
 
-// *** EXAMPLE ***
-export function getWelcome() {
-  return request.get(`${serverURL}/welcome`).then((response) => response.body)
+export async function getImage(text) {
+  const image = await deepai.callStandardApi('text2img', {
+    text: text,
+  })
+  return image
 }
-// ***   ***   ***
+
+export function getRandomBlake() {
+  return request.get('https://poetrydb.org/author/William Blake')
+}
