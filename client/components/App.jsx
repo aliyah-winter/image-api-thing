@@ -7,19 +7,6 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [images, setImages] = useState([])
 
-  // useEffect(() => {
-  //   setLoading(true)
-  //   getRandomBlake()
-  //     .then((res) => {
-  //       return setPoem(() => res.body[51])
-  //     })
-  //     .finally(() => {
-  //       return setLoading(false)
-  //     })
-  //     .catch((err) => {
-  //       console.error(err.message)
-  //     })
-  // }, [])
   useEffect(async () => {
     setLoading(true)
     const randomPoem = await getRandomBlake()

@@ -1,14 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from './Image'
 
 function ImageList({ images, poem }) {
-  // const msg = new SpeechSynthesisUtterance()
-  // msg.text = poem.lines.join(' ')
-  // useEffect(() => {
-  //   window.speechSynthesis.speak(msg)
-  // }, [])
-  console.log(poem.lines[0])
+  const msg = new SpeechSynthesisUtterance()
+  msg.text = poem.lines.join(' ')
 
+  useEffect(() => {
+    return window.speechSynthesis.speak(msg)
+  })
   return (
     <div className="img-grid">
       <div className="img-div">
