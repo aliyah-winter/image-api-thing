@@ -1,25 +1,38 @@
 import React, { useEffect, useState } from 'react'
-import { getRandomBlake } from '../apiClient'
+import { getImage, getRandomBlake } from '../apiClient'
 import ImageList from './ImageList'
 
 function App() {
   const [poem, setPoem] = useState({})
   const [loading, setLoading] = useState(true)
+  const [images, setImages] = useState([])
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   setLoading(true)
+  //   getRandomBlake()
+  //     .then((res) => {
+  //       return setPoem(() => res.body[51])
+  //     })
+  //     .finally(() => {
+  //       return setLoading(false)
+  //     })
+  //     .catch((err) => {
+  //       console.error(err.message)
+  //     })
+  // }, [])
+  useEffect(async () => {
     setLoading(true)
-    getRandomBlake()
-      .then((res) => {
-        setPoem(() => res.body[51])
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-      .catch((err) => {
-        console.error(err.message)
-      })
+    const randomPoem = await getRandomBlake()
+    setPoem(() => randomPoem.body[3])
+    const images = randomPoem.body[3].lines.map(
+      async (line) => await getImage(line)
+    )
+    Promise.all(images)
+      .then((images) => setImages(images))
+      .finally(() => setLoading(false))
+      .catch((err) => console.error(err.message))
   }, [])
-  console.log(poem)
+
   return loading ? (
     <div className="img-div">
       <img
@@ -33,7 +46,7 @@ function App() {
       <div className="title">
         <h1>{poem.title}</h1>
       </div>
-      {poem.lines && <ImageList poem={poem} />}
+      {images.length && <ImageList images={images} poem={poem} />}
     </>
   )
 }

@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { getImage } from '../apiClient'
+import React from 'react'
 
-function Image({ line }) {
-  const [image, setImage] = useState({})
-
-  useEffect(() => {
-    getImage(line)
-      .then((res) => {
-        setImage(() => res.output_url)
-      })
-      .catch((err) => {
-        console.error(err.message)
-      })
-  }, [])
-
+function Image({ image, line }) {
   return (
     image && (
       <>
         <div className="img-div">
-          <img src={image} alt={line} className="img" />
+          <img src={image.output_url} alt={line} className="img" />
           <p className="pink-text">{line}</p>
         </div>
       </>

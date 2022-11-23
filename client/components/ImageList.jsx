@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Image from './Image'
 
-function ImageList({ poem }) {
-  const msg = new SpeechSynthesisUtterance()
-  msg.text = poem.lines.join(' ')
-  useEffect(() => {
-    window.speechSynthesis.speak(msg)
-  })
+function ImageList({ images, poem }) {
+  // const msg = new SpeechSynthesisUtterance()
+  // msg.text = poem.lines.join(' ')
+  // useEffect(() => {
+  //   window.speechSynthesis.speak(msg)
+  // }, [])
+  console.log(poem.lines[0])
 
   return (
     <div className="img-grid">
-      {poem.lines.map((line) => (
-        <Image key={line} line={line} />
-      ))}
+      <div className="img-div">
+        {images.map((image, idx) => (
+          <Image key={image.id} image={image} line={poem.lines[idx]} />
+        ))}
+      </div>
     </div>
   )
 }
