@@ -10,6 +10,6 @@ export async function getImage(text) {
   return image
 }
 
-export function getRandomBlake() {
+export function getBlakePoems() {
   return request.get('https://poetrydb.org/author/William Blake')
 }

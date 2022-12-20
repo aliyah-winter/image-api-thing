@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getImage, getRandomBlake } from '../apiClient'
+import { getImage, getBlakePoems } from '../apiClient'
 import ImageList from './ImageList'
 
 function App() {
@@ -7,11 +7,14 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [images, setImages] = useState([])
 
+  const randomInt = Math.floor(Math.random() * 25)
+
   useEffect(async () => {
     setLoading(true)
-    const randomPoem = await getRandomBlake()
-    setPoem(() => randomPoem.body[3])
-    const images = randomPoem.body[3].lines.map(
+    const poems = await getBlakePoems()
+    const randomPoems = poems.body.filter((poem) => poem.lines.length < 20)
+    setPoem(() => randomPoems[randomInt])
+    const images = randomPoems[randomInt].lines.map(
       async (line) => await getImage(line)
     )
     Promise.all(images)
