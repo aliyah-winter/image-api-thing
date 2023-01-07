@@ -1,11 +1,11 @@
-const deepai = require('deepai')
+const openai = require('openai')
 const request = require('superagent')
 
-deepai.setApiKey('3973aaa4-a9de-4a87-bb2a-a169e0922cf0')
-
 export async function getImage(text) {
-  const image = await deepai.callStandardApi('text2img', {
-    text: text,
+  const image = await openai.createImage({
+    prompt: text,
+    n: 1,
+    size: '256x256',
   })
   return image
 }
