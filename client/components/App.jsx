@@ -22,7 +22,7 @@ function App() {
       .finally(() => setLoading(false))
       .catch((err) => console.error(err.message))
   }, [])
-
+  console.log(images)
   return loading ? (
     <div className="img-div">
       <img

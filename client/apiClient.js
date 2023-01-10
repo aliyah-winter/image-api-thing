@@ -1,5 +1,10 @@
-const openai = require('openai')
+const { Configuration, OpenAIApi } = require('openai')
 const request = require('superagent')
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+})
+const openai = new OpenAIApi(configuration)
 
 export async function getImage(text) {
   const image = await openai.createImage({
